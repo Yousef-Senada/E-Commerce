@@ -3,7 +3,7 @@
     "version": 1,
     "newProjectRoot": "projects",
     "projects": {
-        "frontend": {
+        "Front-end": {
             "projectType": "application",
             "schematics": {
                 "@schematics/angular:component": {
@@ -23,7 +23,7 @@
                 "build": {
                     "builder": "@angular-devkit/build-angular:application",
                     "options": {
-                        "outputPath": "dist/frontend",
+                        "outputPath": "dist/front-end",
                         "index": "src/index.html",
                         "browser": "src/main.ts",
                         "polyfills": ["zone.js"],
@@ -65,10 +65,10 @@
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "configurations": {
                         "production": {
-                            "buildTarget": "frontend:build:production"
+                            "buildTarget": "Front-end:build:production"
                         },
                         "development": {
-                            "buildTarget": "frontend:build:development"
+                            "buildTarget": "Front-end:build:development"
                         }
                     },
                     "defaultConfiguration": "development"
