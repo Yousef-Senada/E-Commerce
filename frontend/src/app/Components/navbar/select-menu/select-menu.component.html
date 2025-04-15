@@ -1,0 +1,23 @@
+<button type="button" (click)="menuToggle()"
+    class="flex items-center justify-between px-5 rounded-full bg-green-500 w-72 h-9 text-white font-bold ">
+    <div class="flex items-center justify-between w-36">
+        <svg class="w-[16px] h-[16px] fill-[#ffffff]" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z">
+            </path>
+        </svg>
+        All Categories
+    </div>
+
+    <svg class="w-4 h-4 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
+    </svg>
+</button>
+<ul [ngClass]="{'menu-visible': isHidden, 'menu-hidden': !isHidden}"
+    class="z-50 w-72 absolute top-40 bg-white border rounded-b-lg grid opacity-0">
+    <li (click)="handleItems(category)" *ngFor="let category of categories"
+        [ngClass]="{'border-t border-neutral-300' : categories.indexOf(category) !== 0}"
+        class=" capitalize h-12  border-dotted cursor-pointer text-lg flex justify-start pl-10 items-center hover:text-green-600 transition duration-300">
+        {{category.name}}
+    </li>
+</ul>

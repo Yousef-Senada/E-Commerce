@@ -1,0 +1,15 @@
+.menu-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.menu-hidden {
+  opacity: 0;
+  transform: translateY(-15px);
+  pointer-events: none;
+}
+
+.menu-visible,
+.menu-hidden {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}

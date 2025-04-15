@@ -1,0 +1,13 @@
+.st1 {
+  fill: #fff;
+}
+.st2,
+.st3 {
+  fill: none;
+  stroke: #666;
+  stroke-width: 4;
+  stroke-miterlimit: 10;
+}
+.st3 {
+  stroke-width: 6;
+}

@@ -1,0 +1,203 @@
+<app-path-define [title]="title"></app-path-define>
+<div class="min-h-[110vh] flex items-center justify-center">
+
+    <div class="bg-white p-8 rounded border w-[70vh] ">
+        <h2 class="text-2xl font-bold mb-6">Register</h2>
+        <div class="-ml-2">
+            <app-alert *ngIf="success" kind="success" name="Login Successfully"
+                content="You are Registered Successfully"></app-alert>
+        </div>
+        <form class="space-y-4" [formGroup]="registerForm" (ngSubmit)="onRegister()">
+            <div class="flex flex-col sm:flex-row sm:space-x-4">
+                <div class="w-full sm:w-1/2">
+                    <label for="firstName" class="block text-sm font-medium text-gray-700 ml-1">First Name *</label>
+                    <input type="text" id="firstName" formControlName="firstName"
+                        class="px-5 mt-1 block p-2 w-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500 rounded-full" />
+                    <div class="msg text-red-500 text-sm"
+                        *ngIf="submitted || (registerForm.get('firstName')!.invalid && registerForm.get('firstName')!.touched)">
+                        <span class="ml-1" *ngIf="registerForm.get('firstName')!.errors?.['required']">*First Name is
+                            required</span>
+                        <span class="ml-1" *ngIf="registerForm.get('firstName')!.errors?.['minlength']">*First Name min
+                            should
+                            be 5 characters</span>
+                        <span class="ml-1" *ngIf="registerForm.get('firstName')!.errors?.['maxlength']">*First Name max
+                            should
+                            be 15 characters</span>
+                    </div>
+                </div>
+
+                <div class="w-full mt-3 sm:mt-0 sm:w-1/2">
+                    <label for="lastName" class="block text-sm font-medium text-gray-700 ml-1">Last Name *</label>
+                    <input type="text" id="lastName" formControlName="lastName"
+                        class="px-5 mt-1 block w-full p-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500 rounded-full" />
+                    <div class="msg text-red-500 text-sm"
+                        *ngIf="submitted || (registerForm.get('lastName')!.invalid && registerForm.get('lastName')!.touched)">
+                        <span class="ml-1" *ngIf="registerForm.get('lastName')!.errors?.['required']">*Last Name is
+                            required</span>
+                        <span class="ml-1" *ngIf="registerForm.get('lastName')!.errors?.['minlength']">*Last Name min
+                            should be
+                            5 characters</span>
+                        <span class="ml-1" *ngIf="registerForm.get('lastName')!.errors?.['maxlength']">*Last Name max
+                            should be
+                            15 characters</span>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <label for="email" class="block text-sm font-medium text-gray-700 ml-1">Email Address *</label>
+                <input type="email" id="email" formControlName="email"
+                    class="px-5 mt-1 block w-full p-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500 rounded-full" />
+                <div class="msg text-red-500 text-sm"
+                    *ngIf="submitted || (registerForm.get('email')!.invalid && registerForm.get('email')!.touched)">
+                    <span class="ml-1" *ngIf="registerForm.get('email')!.errors?.['required']">*Email is required</span>
+                    <span class="ml-1" *ngIf="registerForm.get('email')!.errors?.['pattern']">*Invalid email
+                        format</span>
+                </div>
+            </div>
+
+            <div>
+                <label for="password" class="block text-sm font-medium text-gray-700 ml-1">Password *</label>
+                <input type="password" id="password" formControlName="password"
+                    class="px-5 mt-1 block w-full p-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500 rounded-full" />
+                <div class="msg text-red-500 text-sm"
+                    *ngIf="submitted || (registerForm.get('password')!.invalid && registerForm.get('password')!.touched)">
+                    <span class="ml-1" *ngIf="registerForm.get('password')!.errors?.['required']">*Password is
+                        required</span>
+                    <span class="ml-1" *ngIf="registerForm.get('password')!.errors?.['minlength']">*Password must be at
+                        least 6
+                        characters</span>
+                    <span class="ml-1" *ngIf="registerForm.get('password')!.errors?.['maxlength']">*Password must be at
+                        least 20
+                        characters</span>
+                    <span class="ml-1" *ngIf="registerForm.get('password')!.errors?.['passwordStrength']">*Password must
+                        contain
+                        at least
+                        one uppercase, one lowercase letter, and one number</span>
+                </div>
+            </div>
+
+            <div>
+                <label for="confirmPassword" class="block text-sm font-medium text-gray-700 ml-1">Confirm Password
+                    *</label>
+                <input type="password" id="confirmPassword" formControlName="confirmPassword"
+                    class="px-5 mt-1 block w-full p-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500 rounded-full" />
+                <div class="msg text-red-500 text-sm"
+                    *ngIf="submitted || (registerForm.get('confirmPassword')!.invalid && registerForm.get('confirmPassword')!.touched)">
+                    <span class="ml-1" *ngIf="registerForm.get('confirmPassword')!.errors?.['required']">*Confirm
+                        Password is
+                        required</span>
+                    <span class="ml-1"
+                        *ngIf="registerForm.get('confirmPassword')!.errors?.['passwordDisMatch']">*Confirm
+                        Password do not match Password</span>
+                </div>
+            </div>
+
+            <div>
+                <label for="birthdate" class="block text-sm font-medium text-gray-700 ml-1">Birthdate *</label>
+                <input type="date" id="birthdate" formControlName="birthdate"
+                    class="px-5 mt-1 block w-full p-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500 rounded-full" />
+                <div class="msg text-red-500 text-sm"
+                    *ngIf="submitted || (registerForm.get('birthdate')!.invalid && registerForm.get('birthdate')!.touched)">
+                    <span class="ml-1" *ngIf="registerForm.get('birthdate')!.errors?.['required']">*Birthdate is
+                        required</span>
+                    <span class="ml-1" *ngIf="registerForm.get('birthdate')!.errors?.['ageTooYoung']">*You must be at
+                        least 18 years
+                        old</span>
+                    <span class="ml-1" *ngIf="registerForm.get('birthdate')!.errors?.['ageTooOld']">*Age must be below
+                        100</span>
+                </div>
+            </div>
+
+            <div>
+                <label for="phone" class="block text-sm font-medium text-gray-700 ml-1">Phone *</label>
+                <input type="number" formControlName="phone"
+                    class="px-5 mt-1 block w-full p-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500 rounded-full" />
+                <div class="msg text-red-500 text-sm"
+                    *ngIf="submitted || (registerForm.get('phone')!.invalid && registerForm.get('phone')!.touched)">
+                    <span class="ml-1" *ngIf="registerForm.get('phone')!.errors?.['required']">*Phone is required</span>
+                    <span class="ml-1" *ngIf="registerForm.get('phone')!.errors?.['pattern']">*The Phone Number is
+                        invalid</span>
+                </div>
+            </div>
+
+            <div>
+                <label for="address1" class="block text-sm font-medium text-gray-700 ml-1">Address 1 *</label>
+                <input type="text" id="address1" formControlName="address1"
+                    class="px-5 mt-1 block w-full p-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500 rounded-full" />
+                <div class="msg text-red-500 text-sm"
+                    *ngIf="submitted || (registerForm.get('address1')!.invalid && registerForm.get('address1')!.touched)">
+                    <span class="ml-1" *ngIf="registerForm.get('address1')!.errors?.['required']">*Address 1 is
+                        required</span>
+                    <span class="ml-1" *ngIf="registerForm.get('address1')!.errors?.['minlength']">*Address 1 min should
+                        be 10
+                        letters</span>
+                    <span class="ml-1" *ngIf="registerForm.get('address1')!.errors?.['maxlength']">*Address 1 max should
+                        be 50
+                        letters</span>
+                </div>
+            </div>
+
+            <div>
+                <label for="address2" class="block text-sm font-medium text-gray-700 ml-1">Address 2 *</label>
+                <input type="text" id="address2" formControlName="address2" placeholder="Optional"
+                    class="px-4 placeholder:text-sm placeholder:text-zinc-500 mt-1 block w-full p-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500 rounded-full" />
+                <div class="msg text-red-500 text-sm"
+                    *ngIf="submitted || (registerForm.get('address2')!.invalid && registerForm.get('address2')!.touched)">
+                    <span class="ml-1" *ngIf="registerForm.get('address2')!.errors?.['minlength']">*Address 2 min should
+                        be 10
+                        letters</span>
+                    <span class="ml-1" *ngIf="registerForm.get('address2')!.errors?.['maxlength']">*Address 2 max should
+                        be 50
+                        letters</span>
+                </div>
+            </div>
+
+            <div>
+                <label for="country" class="block text-sm font-medium text-gray-700 ml-1">Governorate *</label>
+                <select id="country" formControlName="city"
+                    class="block w-full mt-1 p-2 border border-gray-300 focus:outline-none rounded-full text-sm">
+                    <option value="">Select a Governorate</option>
+                    <option value="Alexandria">Alexandria</option>
+                    <option value="Aswan">Aswan</option>
+                    <option value="Asyut">Asyut</option>
+                    <option value="BeniSuef">Beni Suef</option>
+                    <option value="Cairo">Cairo</option>
+                    <option value="Dakahlia">Dakahlia</option>
+                    <option value="Damietta">Damietta</option>
+                    <option value="Fayoum">Fayoum</option>
+                    <option value="Gharbia">Gharbia</option>
+                    <option value="Giza">Giza</option>
+                    <option value="Ismailia">Ismailia</option>
+                    <option value="KafirElSheikh">Kafr El Sheikh</option>
+                    <option value="Luxor">Luxor</option>
+                    <option value="Matrouh">Matrouh</option>
+                    <option value="Minya">Minya</option>
+                    <option value="Monufia">Monufia</option>
+                    <option value="NorthSinai">North Sinai</option>
+                    <option value="PortSaid">Port Said</option>
+                    <option value="Qalyubia">Qalyubia</option>
+                    <option value="Qena">Qena</option>
+                    <option value="RedSea">Red Sea</option>
+                    <option value="Sharqia">Sharqia</option>
+                    <option value="SouthSinai">South Sinai</option>
+                    <option value="Sohag">Sohag</option>
+                    <option value="Suez">Suez</option>
+                    <option value="NewValley">New Valley</option>
+                </select>
+                <div class="msg text-red-500 text-sm"
+                    *ngIf="submitted || (registerForm.get('city')!.invalid && registerForm.get('city')!.touched)">
+                    <span class="ml-1" *ngIf="registerForm.get('city')!.errors?.['required']">*Governorate is
+                        required</span>
+                </div>
+            </div>
+
+            <button type="submit"
+                class="w-40 h-10 bg-green-500 text-sm text-white py-2 rounded-full font-bold hover:bg-green-600 transition duration-200 flex items-center justify-center">
+                <span *ngIf="!loading">Register</span>
+                <span *ngIf="loading" class="loader"></span>
+            </button>
+        </form>
+
+    </div>
+</div>

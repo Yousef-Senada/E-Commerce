@@ -1,0 +1,15 @@
+<div class="filter-container pt-5 w-64">
+    <div class="w-64 relative">
+        <input type="range" [(ngModel)]="minPrice" [min]="priceRange.min" [max]="priceRange.max"
+            (input)="updatePriceRangeMin()" />
+        <input type="range" [(ngModel)]="maxPrice" [min]="priceRange.min" [max]="priceRange.max"
+            (input)="updatePriceRangeMax()" />
+    </div>
+    <div class="flex justify-between items-center">
+        <p class="mt-10 text-sm text-zinc-600">Price: {{ minPrice | number:'1.2-4'}} – {{ maxPrice |
+            number:'1.2-4'}}</p>
+        <button
+            class="text-white py-3 px-2 pxtext-sm flex justify-center items-center w-[68px] h-[32px] mt-[44px] rounded-full bg-green-600 hover:bg-zinc-800 transition duration-300"
+            (click)="filter()">Filter</button>
+    </div>
+</div>

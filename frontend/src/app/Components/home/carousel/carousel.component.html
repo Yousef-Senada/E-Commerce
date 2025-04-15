@@ -1,0 +1,27 @@
+<div class="slider">
+    <div class="list" #slider>
+        <div class="item relative" *ngFor="let product of products; let i = index">
+            <img class="slide-photo" src="whiteBg.jpg" alt="">
+            <div
+                class="absolute top-0 left-0 w-full h-full flex justify-around items-center max-sm:items-start max-sm:pt-56 max-sm:px-5 max-sm:pl-12 px-20">
+                <div>
+                    <div class="text text-zinc-800 capitalize font-bold whitespace-pre-line text-7xl max-xl:text-5xl max-sm:text-4xl "
+                        *ngIf="i === active">{{
+                        product.name }}</div>
+                    <button (click)="navigate()" class="discover mt-16 bg-zinc-800 text-white rounded-full px-5 py-2  w-40
+                        hover:bg-green-500 transition-all duration-300">Discover
+                        Now</button>
+                </div>
+                <div class="img"><img class="w-xl h-xl" [src]=" imgMainURl + product.imgURL" alt="No Image!"></div>
+            </div>
+        </div>
+    </div>
+    <div class="buttons">
+        <button (click)="prev()">&lt;</button>
+        <button (click)="next()">&gt;</button>
+    </div>
+    <ul class="dots">
+        <li *ngFor="let dot of products; let i = index" [class.active]="i === active" (click)="goToSlide(i)">
+        </li>
+    </ul>
+</div>

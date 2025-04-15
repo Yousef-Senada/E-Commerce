@@ -1,0 +1,50 @@
+<div class="flex flex-col items-center justify-center w-[70rem] space-y-8">
+    <!-- Product Image Upload -->
+
+    <!-- Add Product Form -->
+    <form [formGroup]="categoryForm" (ngSubmit)="CreateCategory()" class="w-full bg-white p-8">
+        <div class="space-y-4">
+            <!-- Product Name -->
+            <div>
+                <label for="product-name" class="block text-sm font-medium text-gray-700">Product Name *</label>
+                <input id="product-name" formControlName="name"
+                    class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500"
+                    placeholder="Enter product name" />
+                <div class="msg text-red-500 text-sm"
+                    *ngIf="(categoryForm.get('name')!.invalid && categoryForm.get('name')!.touched)">
+                    <span class="ml-1" *ngIf="categoryForm.get('name')!.errors?.['required']">*Name is
+                        required</span>
+                    <span class="ml-1" *ngIf="categoryForm.get('name')!.errors?.['minlength']">*Name min
+                        should be
+                        3 characters</span>
+                    <span class="ml-1" *ngIf="categoryForm.get('name')!.errors?.['maxlength']">*Name max
+                        should be
+                        50 characters</span>
+                </div>
+            </div>
+
+            <!-- Product Description -->
+            <div>
+                <label for="product-description" class="block text-sm font-medium text-gray-700">Description * <span
+                        class="text-zinc-400">(Optinal)</span></label>
+                <textarea id="product-description" formControlName="description"
+                    class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500"
+                    rows="4" placeholder="Enter product description"></textarea>
+                <div class="msg text-red-500 text-sm"
+                    *ngIf="(categoryForm.get('description')!.invalid && categoryForm.get('description')!.touched)">
+                    <span class="ml-1" *ngIf="categoryForm.get('description')!.errors?.['maxlength']">*description Must
+                        be One
+                        or More</span>
+                </div>
+            </div>
+
+            <!-- Save Button -->
+            <div class="flex justify-end">
+                <button type="submit"
+                    class="cursor-pointer px-6 py-2 bg-green-500 text-white font-bold rounded-full hover:bg-green-600 focus:outline-none transition">
+                    Create New Category
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

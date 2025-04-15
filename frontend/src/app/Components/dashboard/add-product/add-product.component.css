@@ -1,0 +1,19 @@
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    appearance: textfield;
+}
+select {
+    font-size: 12px;
+    max-height: 200px;
+    overflow-y: auto;
+    margin-top: 8px;
+}
+
+input.ng-invalid.ng-touched {
+    border: #ef4444 solid 1px;
+}

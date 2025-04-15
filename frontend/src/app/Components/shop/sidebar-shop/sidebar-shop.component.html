@@ -1,0 +1,39 @@
+<div class="flex flex-col items-center gap-8 w-full h-[100vh] px-5">
+
+    <!-- Categories Component -->
+    <app-sidebar-shop-element>
+        <div title>Categories</div>
+        <!-- Categories List -->
+        <div>
+            <!-- Category Item -->
+            <div  *ngFor="let category of categories; let i = index" (click)="handleCategory(category)"
+                [ngClass]="{'border-t border-dotted border-gray-300': i !== 0}" class="text-zinc-600 h-12 cursor-pointer text-base flex justify-start pl-1 items-center 
+                hover:text-green-600 transition duration-300">
+                {{ category.name | titlecase }} ( {{ productsCategories[category.name] || 0 }} )
+            </div>
+        </div>
+    </app-sidebar-shop-element>
+
+    <!-- Price Component -->
+    <app-sidebar-shop-element>
+        <div title>Filter by price</div>
+        <app-price-filter-slider [priceRange]="{ min: min, max: max }"></app-price-filter-slider>
+    </app-sidebar-shop-element>
+
+    <!-- Rating Component -->
+    <app-sidebar-shop-element>
+        <div title>Average rating</div>
+        <div *ngFor="let rating of [1,2,3,4,5]" (click)="handleRating(rating)"
+            class="rating flex items-center py-2 -ml-1 cursor-pointer w-6">
+            <div *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">
+                <svg [ngClass]="{'text-yellow-300': i < rating, 'text-gray-200': i >= rating}" class="w-4 h-4 ms-1"
+                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                    <path
+                        d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                </svg>
+            </div>
+        </div>
+
+
+    </app-sidebar-shop-element>
+</div>

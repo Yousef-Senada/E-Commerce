@@ -1,0 +1,55 @@
+<app-path-define [title]="title"></app-path-define>
+<section *ngIf="products.length !== 0"
+    class="relative max-w-[60rem] px-10 flex gap-8 m-auto flex-col justify-center 2xl:flex-row">
+    <div class="mr-16 max-sm:mr-0 max-sm:w-[20rem]">
+        <div class="flex justify-between py-6 text-xl max-sm:text-base mx-10 max-sm:mx-0">
+            <p class="leading-8 text-zinc-800 font-semibold">Product</p>
+            <p class="leading-8 text-zinc-800 font-semibold">Price</p>
+            <p class="leading-8 text-zinc-800 font-semibold">Quantity</p>
+            <p class="leading-8 text-zinc-800 font-semibold">Total</p>
+        </div>
+
+        <div>
+            <app-product-cart-page *ngFor="let product of products" [product]="product">
+            </app-product-cart-page>
+        </div>
+    </div>
+
+    <div class="mt-5 mx-auto">
+        <p class="leading-8 text-zinc-800 font-semibold text-2xl text-center mb-5 mt-1">Cart Totals</p>
+        <div
+            class="bg-gray-50 rounded-xl p-6 w-[50rem] max-sm:w-[20rem] mb-8 max-lg:max-w-xl max-lg:mx-auto 2xl:w-[30rem]">
+            <div class="flex items-center justify-between w-full mb-6">
+                <p class="font-normal text-lg leading-8 text-zinc-500">Sub Total</p>
+                <h6 class=" text-lg leading-8 text-zinc-800">{{ subTotal | number:'1.2-4' }} EGP</h6>
+            </div>
+            <div class="flex items-center justify-between w-full pb-6 border-b border-gray-200">
+                <p class="font-normal text-lg leading-8 text-zinc-500">Delivery Charge</p>
+                <h6 class="text-lg leading-8 text-zinc-800">{{ deliveryCost | number:'1.2-4' }} EGP</h6>
+            </div>
+            <div class="flex items-center justify-between w-full py-6">
+                <p class="font-manrope font-medium text-xl leading-9 text-zinc-800">Total</p>
+                <h6 class="font-medium text-xl leading-9 text-green-500">{{total | number:'1.2-4'}} EGP</h6>
+            </div>
+            <div class="flex items-center flex-col sm:flex-row justify-center gap-3 mt-8">
+                <button
+                    class="rounded-full w-full max-w-[280px] py-4 text-center justify-center items-center bg-green-600 font-semibold text-lg text-white flex transition-all duration-500 hover:bg-green-700">
+                    Checkout
+                    <svg class="ml-2" xmlns="http://www.w3.org/2000/svg" width="23" height="22" viewBox="0 0 23 22"
+                        fill="none">
+                        <path d="M8.75324 5.49609L14.2535 10.9963L8.75 16.4998" stroke="white" stroke-width="1.6"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+<section *ngIf="products.length === 0" class="flex justify-center items-center flex-col">
+    <img class="w-80 h-80 max-sm:w-60 max-sm:h-60" src="empty-cart.png" alt="">
+    <p class="text-3xl max-sm:text-xl font-semibold text-zinc-500">Your Cart is Currently Empty</p>
+    <button (click)="goToShop()"
+        class="text-xl font-semibold bg-green-400 text-white w-56 h-16 rounded-full transition duration-200 border-green-400 border-2 hover:bg-white hover:text-zinc-700 mt-10">Return
+        To Shop</button>
+</section>
+<app-loading-page *ngIf="loading"></app-loading-page>

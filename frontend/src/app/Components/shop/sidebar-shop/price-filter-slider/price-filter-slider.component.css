@@ -1,0 +1,28 @@
+input[type="range"] {
+    width: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+    pointer-events: none;
+    position: absolute;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+    height: 4px;
+    background: #ddd;
+    border-radius: 2px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    pointer-events: all;
+    width: 14px;
+    height: 14px;
+    background: #4caf50;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    z-index: 5;
+    -webkit-appearance: none;
+    margin-top: -5px;
+}
+

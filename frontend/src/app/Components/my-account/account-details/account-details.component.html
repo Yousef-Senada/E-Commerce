@@ -1,0 +1,117 @@
+<div class="flex items-center justify-center">
+    <div class="bg-white  h-full p-8 w-full max-w-[75vh] md:max-w-[90vw] lg:max-w-[60vw] rounded-lg">
+        <h2 class="text-2xl font-bold mb-6 text-center">My Account Details</h2>
+        <form class="space-y-6" [formGroup]="accountForm" (ngSubmit)="onUpdate()">
+            <!-- First and Last Name -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label for="firstName" class="block text-sm font-medium text-gray-700 ml-1">First Name <span
+                            class="text-red-700">*</span></label>
+                    <input type="text" id="firstName" formControlName="firstName"
+                        class="capitalize px-5 mt-1 block w-full p-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500 rounded-full" />
+                    <div class="msg text-red-500 text-sm"
+                        *ngIf="submitted || (accountForm.get('firstName')!.invalid && accountForm.get('firstName')!.touched)">
+                        <span class="ml-1" *ngIf="accountForm.get('firstName')!.errors?.['required']">*First Name is
+                            required</span>
+                        <span class="ml-1" *ngIf="accountForm.get('firstName')!.errors?.['minlength']">*First Name min
+                            should be 5 characters</span>
+                        <span class="ml-1" *ngIf="accountForm.get('firstName')!.errors?.['maxlength']">*First Name max
+                            should be 15 characters</span>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="lastName" class="block text-sm font-medium text-gray-700 ml-1">Last Name <span
+                            class="text-red-700">*</span></label>
+                    <input type="text" id="lastName" formControlName="lastName"
+                        class="capitalize px-5 mt-1 block w-full p-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500 rounded-full" />
+                    <div class="msg text-red-500 text-sm"
+                        *ngIf="submitted || (accountForm.get('lastName')!.invalid && accountForm.get('lastName')!.touched)">
+                        <span class="ml-1" *ngIf="accountForm.get('lastName')!.errors?.['required']">*Last Name is
+                            required</span>
+                        <span class="ml-1" *ngIf="accountForm.get('lastName')!.errors?.['minlength']">*Last Name min
+                            should be 5 characters</span>
+                        <span class="ml-1" *ngIf="accountForm.get('lastName')!.errors?.['maxlength']">*Last Name max
+                            should be 15 characters</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Email -->
+            <div>
+                <label for="email" class="block text-sm font-medium text-gray-700 ml-1">Email Address <span
+                        class="text-red-700">*</span></label>
+                <input type="email" id="email" formControlName="email"
+                    class="capitalize pointer-events-none text-zinc-600 px-5 mt-1 block w-full p-2 border border-gray-300 focus:outline-none rounded-full"
+                    readonly />
+            </div>
+
+            <!-- Phone -->
+            <div>
+                <label for="phone" class="block text-sm font-medium text-gray-700 ml-1">Phone <span
+                        class="text-red-700">*</span></label>
+                <input type="text" id="phone" formControlName="phone"
+                    class="px-5 mt-1 block w-full p-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500 rounded-full"
+                    onkeypress="return /[0-9]/.test(event.key)" />
+                <div class="msg text-red-500 text-sm"
+                    *ngIf="submitted || (accountForm.get('phone')!.invalid && accountForm.get('phone')!.touched)">
+                    <span class="ml-1" *ngIf="accountForm.get('phone')!.errors?.['required']">*Phone is required</span>
+                    <span class="ml-1" *ngIf="accountForm.get('phone')!.errors?.['pattern']">*The Phone Number is
+                        invalid</span>
+                </div>
+            </div>
+
+            <!-- Password Section -->
+            <p class="uppercase font-bold my-4 text-sm text-zinc-700">Password Change</p>
+            <div>
+                <label for="password" class="block text-sm font-medium text-gray-700 ml-1">Current password <span
+                        class="text-red-700">*</span></label>
+                <input type="password" id="password" formControlName="password"
+                    class="px-5 mt-1 block w-full p-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500 rounded-full" />
+                <div class="msg text-red-500 text-sm">
+                    <span class="ml-1" *ngIf="accountForm.get('password')?.hasError('minlength')">*Password min should
+                        be 6 characters</span>
+                    <span class="ml-1" *ngIf="accountForm.get('password')?.hasError('maxlength')">*Password max should
+                        be 15 characters</span>
+                </div>
+            </div>
+
+            <div>
+                <label for="newPassword" class="block text-sm font-medium text-gray-700 ml-1">New password <span
+                        class="text-red-700">*</span></label>
+                <input type="password" id="newPassword" formControlName="newPassword"
+                    class="px-5 mt-1 block w-full p-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500 rounded-full" />
+                <div class="msg text-red-500 text-sm">
+                    <span class="ml-1" *ngIf="accountForm.get('newPassword')!.errors?.['minlength']">*Password min
+                        should be 6 characters</span>
+                    <span class="ml-1" *ngIf="accountForm.get('newPassword')!.errors?.['maxlength']">*Password max
+                        should be 20 characters</span>
+                    <span class="ml-1" *ngIf="accountForm.get('newPassword')!.errors?.['passwordStrength']">*Password
+                        must
+                        contain at least one uppercase letter, one lowercase letter, one number, and one special
+                        character</span>
+                </div>
+            </div>
+
+            <div>
+                <label for="confirmPassword" class="block text-sm font-medium text-gray-700 ml-1">Confirm new password
+                    <span class="text-red-700">*</span>
+                </label>
+                <input type="password" formControlName="confirmPassword"
+                    class="px-5 mt-1 block w-full p-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500 rounded-full" />
+                <div class="msg text-red-500 text-sm">
+                    <span class="ml-1"
+                        *ngIf="accountForm.get('confirmPassword')!.errors?.['passwordDisMatch']">*Passwords must
+                        match</span>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit"
+                class="transition duration-300 w-full md:w-56 h-14 bg-green-400 text-white font-bold py-2 px-4 rounded-full hover:bg-green-600">
+                Save Changes
+            </button>
+        </form>
+    </div>
+</div>
+<app-loading-page *ngIf="loading"></app-loading-page>

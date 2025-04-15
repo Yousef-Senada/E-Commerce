@@ -1,0 +1,33 @@
+<section class="py-24">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <h2 class="font-manrope font-bold text-3xl min-[400px]:text-4xl text-black mb-8 max-lg:text-center">
+            Available Products
+        </h2>
+
+        <div class="relative">
+            <!-- زر الاتجاه لليسار -->
+            <button
+                class="absolute -left-20 top-1/2 -translate-y-1/2 z-10 text-neutral-500 font-bold bg-gray-100 p-2 rounded-full w-12 h-12"
+                (click)="scrollLeft()">
+                < </button>
+
+                    <!-- الـ Container الذي يحتوي على المنتجات -->
+                    <div #productSlider
+                        class="flex overflow-x-auto scroll-smooth snap-x snap-mandatory gap-8 scrollbar-hide ">
+                        <div *ngFor="let product of products" class="snap-center shrink-0 w-64">
+                            <div class="border-y" [ngClass]="{'border-l': products.indexOf(product) === 0}">
+                                <app-product-card [product]="product"></app-product-card>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- زر الاتجاه لليمين -->
+                    <button
+                        class="absolute -right-20 top-1/2 -translate-y-1/2 z-10  text-neutral-500 font-bold bg-gray-100 p-2 rounded-full w-12 h-12"
+                        (click)="scrollRight()">
+                        >
+                    </button>
+        </div>
+    </div>
+</section>
