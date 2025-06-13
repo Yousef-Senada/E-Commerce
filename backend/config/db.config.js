@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const connectDB = async () => {
-    await mongoose.connect('mongodb+srv://Yousef-Senada:Posp012070!@cluster0.ujwzb8c.mongodb.net/')
+    await mongoose.connect(process.env.DB_URL)
     console.log('DataBase Connected')
 }
 
