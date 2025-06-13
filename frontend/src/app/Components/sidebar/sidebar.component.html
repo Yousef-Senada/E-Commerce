@@ -1,0 +1,64 @@
+<div class="block lg:hidden transition duration-200" *ngIf="!isSideBarHidden">
+    <div class="bg-white w-80 h-full fixed z-50 top-0 sm:w-1/2">
+        <div class="flex w-full h-14 items-center px-3">
+            <button class="text-zinc-700 hover:text-red-400 transition duration-200" (click)="toggleSideBar()">
+                <svg class="stroke-current" width="25px" height="25px" viewBox="-0.5 0 25 25" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 21.32L21 3.32001M3 3.32001L21 21.32" stroke-width="2.025" stroke-linecap="round"
+                        stroke-linejoin="round"></path>
+                </svg>
+            </button>
+        </div>
+        <hr>
+        <div class="px-3 mt-4 relative">
+            <input placeholder="Search products here..." type="input"
+                class="placeholder:text-zinc-600 w-full h-11 border-2 outline-none px-2 py-1 text-md text-zinc-800">
+            <button class="absolute top-2 right-5" (click)="toggleSideBar()">
+                <svg cl width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                    <g id="SVGRepo_iconCarrier">
+                        <g clip-path="url(#clip0_15_152)">
+                            <rect width="24" height="24" fill="white"></rect>
+                            <circle cx="10.5" cy="10.5" r="6.5" stroke="#000000" stroke-linejoin="round"></circle>
+                            <path
+                                d="M19.6464 20.3536C19.8417 20.5488 20.1583 20.5488 20.3536 20.3536C20.5488 20.1583 20.5488 19.8417 20.3536 19.6464L19.6464 20.3536ZM20.3536 19.6464L15.3536 14.6464L14.6464 15.3536L19.6464 20.3536L20.3536 19.6464Z"
+                                fill="#000000"></path>
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_15_152">
+                                <rect width="24" height="24" fill="white"></rect>
+                            </clipPath>
+                        </defs>
+                    </g>
+                </svg>
+            </button>
+        </div>
+        <div>
+            <ul class="flex flex-col px-3 mt-4 w-full text-zinc-700 text-base font-semibold ">
+                <button (click)="toggleSideBar()" routerLinkActive="border-l-2 border-l-green-600 text-green-600"
+                    class="border-b uppercase w-full h-14 flex items-center px-5"><a routerLink="home">Home</a>
+                </button>
+                <li (click)="toggleSideBar()" routerLinkActive="border-l-2 border-l-green-600 text-green-600"
+                    class="border-b uppercase w-full h-14 flex items-center px-5"><a routerLink="shop">Shop</a>
+                </li>
+                <li (click)="toggleSideBar()" routerLinkActive="border-l-2 border-l-green-600 text-green-600"
+                    class="border-b uppercase  w-full h-14  flex items-center px-5"><a routerLink="about">About</a>
+                </li>
+                <li (click)="toggleSideBar()" routerLinkActive="border-l-2 border-l-green-600 text-green-600"
+                    class="border-b uppercase  w-full h-14  flex items-center px-5"><a routerLink="contact">Contact
+                        us</a> </li>
+
+                <li (click)="toggleSideBar()" routerLinkActive="border-l-2 border-l-green-600 text-green-600"
+                    class="border-b uppercase w-full h-14  flex items-center px-5"><a
+                        [routerLink]="isLogedin ? 'my-account' : 'login'">{{isLogedin ? 'My Account' : 'Login'}}</a>
+                </li>
+                <li (click)="toggleSideBar()" routerLinkActive="border-l-2 border-l-green-600 text-green-600"
+                    *ngIf="isAdmin" class="border-b uppercase w-full h-14 mb-2 flex items-center px-5"><a
+                        [routerLink]="'dashboard'">Dashboard</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <span class="bg-black opacity-50 h-lvh w-full fixed top-0 z-40"></span>
+</div>

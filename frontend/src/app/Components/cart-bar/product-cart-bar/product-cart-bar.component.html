@@ -1,0 +1,22 @@
+<!-- Product Item -->
+<div class="product flex items-center relative mb-5" *ngIf="!isDelete">
+    <div class="w-[87px] h-[87px] border border-gray-200 flex items-center justify-center mr-4">
+        <img class="w-14 h-16" [src]="imgMainURl + product.product.imgURL" alt="Product Image">
+    </div>
+    <div>
+        <p class="font-semibold text-green-600">{{product.quantity || 0}} × {{product.product.price ||
+            0 | number:'1.2-4'}} EGP</p>
+        <a class="text-sm font-semibold text-zinc-800">{{product.product.name}}</a>
+    </div>
+    <button class="absolute top-5 -right-0" (click)="deleteFromCart()">
+        <svg class="stroke-zinc-500 hover:stroke-red-500 transition-all duration-300" width="15px" height="15px"
+            viewBox="-0.5 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 21.32L21 3.32001M3 3.32001L21 21.32" stroke-width="2.025" stroke-linecap="round"
+                stroke-linejoin="round"></path>
+        </svg>
+    </button>
+</div>
+<span *ngIf="loading"
+    class="w-full h-full -ml-5 opacity-30 bg-black absolute top-10 z-50 flex justify-center items-center">
+    <span class="loader -mt-10"></span>
+</span>

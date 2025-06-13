@@ -1,0 +1,55 @@
+<!-- Path Definition Component -->
+<app-path-define [title]="title"></app-path-define>
+
+<!-- Main Container -->
+<div class="w-full p-10 max-sm:p-2 flex justify-stretch items-start">
+
+    <div class="hidden xl:block">
+        <app-sidebar-shop></app-sidebar-shop>
+    </div>
+    <button (click)="setSortBar()"
+        class="flex xl:hidden z-40 fixed top-[17rem] bg-white left-0 w-20 h-16 border fill-green-600 items-center justify-center">
+        <svg class="fill-green-500 w-10 h-12" fill="#000000" viewBox="-5.5 0 32 32" version="1.1"
+            xmlns="http://www.w3.org/2000/svg">
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+                <path
+                    d="M1.375 9.156h18.063c0.781 0 1.375-0.594 1.375-1.375 0-0.75-0.594-1.344-1.375-1.344h-18.063c-0.781 0-1.375 0.594-1.375 1.344 0 0.781 0.594 1.375 1.375 1.375zM1.375 14.625h18.063c0.781 0 1.375-0.594 1.375-1.375 0-0.75-0.594-1.344-1.375-1.344h-18.063c-0.781 0-1.375 0.594-1.375 1.344 0 0.781 0.594 1.375 1.375 1.375zM1.375 20.094h18.063c0.781 0 1.375-0.594 1.375-1.344 0-0.781-0.594-1.375-1.375-1.375h-18.063c-0.781 0-1.375 0.594-1.375 1.375 0 0.75 0.594 1.344 1.375 1.344zM1.375 25.563h18.063c0.781 0 1.375-0.594 1.375-1.344 0-0.781-0.594-1.375-1.375-1.375h-18.063c-0.781 0-1.375 0.594-1.375 1.375 0 0.75 0.594 1.344 1.375 1.344z">
+                </path>
+            </g>
+        </svg>
+    </button>
+    <app-sidebar-shop-mobile></app-sidebar-shop-mobile>
+
+
+
+    <!-- Main Content Section -->
+    <div class="main-content w-[72rem] space-y-5">
+        <!-- Sorting and Results Header -->
+        <div
+            class="px-5 py-2 h-[5vh] rounded-lg border flex justify-between items-center max-sm:flex-col max-sm:h-[10vh] max-sm:text-sm max-sm:justify-evenly">
+            <!-- Results Text -->
+            <p class="text-zinc-600">Showing 1–{{products.length}} of {{products.length}} results</p>
+
+            <!-- Sorting Dropdown -->
+            <select name="sort" class="max-sm:w-40 max-sm:text-sm border-b uppercase py-1 border-zinc-700"
+                (change)="onSortChange($event)">
+                <option value="">Default Sorting</option>
+                <option value="A-Z">Sorting By A-Z</option>
+                <option value="Z-A">Sorting By Z-A</option>
+                <option value="Low-To-High">Sorting By Price: Low To High</option>
+                <option value="High-To-Low">Sorting By Price: High To Low</option>
+            </select>
+
+        </div>
+
+        <!-- Product Cards Grid -->
+        <div
+            class="grid grid-cols-2 xl:grid-cols- 2xl:grid-cols-4 border-t border-b border-l border-r gap-[1px] rounded-md overflow-hidden">
+            <!-- Product Card Component -->
+            <app-product-card *ngFor="let product of products" [product]="product"></app-product-card>
+        </div>
+    </div>
+</div>
+<app-loading-page *ngIf="loading"></app-loading-page>

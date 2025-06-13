@@ -1,0 +1,284 @@
+.carousel-container {
+    position: relative;
+    width: 100%;
+    height: 35rem;
+    overflow: hidden;
+    font-family: "Poppins", sans-serif;
+}
+
+.slides-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateX(100%);
+}
+
+.slide.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.slide.prev {
+    opacity: 0;
+    transform: translateX(-100%);
+}
+
+.slide.next {
+    opacity: 0;
+    transform: translateX(100%);
+}
+
+.slide.slide-out-left {
+    transform: translateX(-100%);
+    opacity: 0;
+}
+
+.slide.slide-out-right {
+    transform: translateX(100%);
+    opacity: 0;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.content-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    width: 100%;
+    max-width: 40rem;
+    padding: 1rem;
+}
+
+.content {
+    text-align: center;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.content.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.content.fade-out {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.category {
+    display: inline-block;
+    background-color: #10b981;
+    color: white;
+    text-transform: capitalize;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 0 10px;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+}
+
+.heading {
+    font-size: 45px;
+    line-height: 42px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 20px 0;
+    letter-spacing: 8px;
+    color: white;
+}
+
+.description {
+    color: white;
+    font-size: 17px;
+    font-weight: normal;
+    line-height: 22px;
+    margin: 0 0 30px 0;
+    font-family: "Muli", sans-serif;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.btn-primary {
+    background-color: #16a34a;
+    color: white;
+    font-weight: 500;
+    padding: 12px 24px;
+    border-radius: 6px;
+    border: 2px solid #16a34a;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+    border-radius: 0;
+}
+
+.btn-secondary {
+    background-color: white;
+    color: #16a34a;
+    font-weight: 500;
+    padding: 12px 24px;
+    border-radius: 6px;
+    border: 2px solid white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: #16a34a;
+    color: white;
+}
+
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.6);
+    border: none;
+    cursor: pointer;
+    padding: 20px;
+    transition: all 0.5s ease;
+    z-index: 20;
+}
+
+.nav-btn:hover {
+    background-color: #16a34a;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.nav-btn-left {
+    left: 48px;
+    transform: translateY(-50%) rotate(180deg);
+}
+
+.nav-btn-left:hover {
+    transform: translateY(-50%) rotate(180deg) scale(1.1);
+}
+
+.nav-btn-right {
+    right: 48px;
+}
+
+.nav-btn svg {
+    width: 100%;
+    height: 100%;
+}
+
+.dots-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 20;
+}
+
+.dot {
+    width: 20px;
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+}
+
+.dot.active {
+    background-color: #10b981;
+    width: 40px;
+}
+
+.dot:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .heading {
+        font-size: 32px;
+        line-height: 30px;
+        letter-spacing: 4px;
+    }
+
+    .description {
+        font-size: 15px;
+    }
+
+    .buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-btn {
+        width: 60px;
+        height: 60px;
+        padding: 15px;
+    }
+
+    .nav-btn-left {
+        left: 20px;
+    }
+
+    .nav-btn-right {
+        right: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel-container {
+        height: 25rem;
+    }
+
+    .heading {
+        font-size: 24px;
+        line-height: 22px;
+        letter-spacing: 2px;
+    }
+
+    .category {
+        font-size: 12px;
+    }
+
+    .description {
+        font-size: 14px;
+        line-height: 18px;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+}

@@ -1,0 +1,108 @@
+<div class="flex flex-col items-center justify-center w-[70rem] space-y-8">
+    <!-- Product Image Upload -->
+
+    <!-- Add Product Form -->
+    <form [formGroup]="productForm" (ngSubmit)="CreateProduct()" class="w-full bg-white p-8">
+        <label for="product-image"
+            class="mb-10 flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
+            <div *ngIf="!imagePreview" class="flex flex-col items-center justify-center pt-5 pb-6">
+                <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
+                </svg>
+                <p class="mb-2 text-sm text-gray-500"><span class="font-semibold">Click to upload</span> or drag and
+                    drop</p>
+                <p class="text-xs text-gray-500">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
+            </div>
+            <img *ngIf="imagePreview" [src]="imagePreview" alt="Uploaded Image"
+                class="w-80 h-40 object-contain rounded-lg" />
+            <input id="product-image" type="file" (change)="onFileChange($event)" class="hidden" />
+        </label>
+
+        <div class="space-y-4">
+            <!-- Product Name -->
+            <div>
+                <label for="product-name" class="block text-sm font-medium text-gray-700">Product Name *</label>
+                <input id="product-name" formControlName="name"
+                    class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500"
+                    placeholder="Enter product name" />
+                <div class="msg text-red-500 text-sm"
+                    *ngIf="(productForm.get('name')!.invalid && productForm.get('name')!.touched)">
+                    <span class="ml-1" *ngIf="productForm.get('name')!.errors?.['required']">*Name is
+                        required</span>
+                    <span class="ml-1" *ngIf="productForm.get('name')!.errors?.['minlength']">*Name min
+                        should be
+                        3 characters</span>
+                    <span class="ml-1" *ngIf="productForm.get('name')!.errors?.['maxlength']">*Name max
+                        should be
+                        50 characters</span>
+                </div>
+            </div>
+
+            <!-- Product Price -->
+            <div>
+                <label for="product-price" class="block text-sm font-medium text-gray-700">Price *</label>
+                <input id="product-price" type="number" formControlName="price"
+                    class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500"
+                    placeholder="Enter product price" />
+                <div class="msg text-red-500 text-sm"
+                    *ngIf="(productForm.get('price')!.invalid && productForm.get('price')!.touched)">
+                    <span class="ml-1" *ngIf="productForm.get('price')!.errors?.['required']">*Price is
+                        required</span>
+                    <span class="ml-1" *ngIf="productForm.get('price')!.errors?.['minlength']">*Price min
+                        should be
+                        greater than 0</span>
+                </div>
+            </div>
+
+            <!-- Product Quantity -->
+            <div>
+                <label for="product-quantity" class="block text-sm font-medium text-gray-700">Quantity *</label>
+                <input id="product-quantity" type="number" formControlName="quantity"
+                    class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500"
+                    placeholder="Enter product quantity" />
+                <div class="msg text-red-500 text-sm"
+                    *ngIf="(productForm.get('quantity')!.invalid && productForm.get('quantity')!.touched)">
+                    <span class="ml-1" *ngIf="productForm.get('quantity')!.errors?.['required']">*quantity is
+                        required</span>
+                    <span class="ml-1" *ngIf="productForm.get('quantity')!.errors?.['minlength']">*quantity Must be One
+                        or More</span>
+                </div>
+            </div>
+
+            <!-- Product Description -->
+            <div>
+                <label for="product-description" class="block text-sm font-medium text-gray-700">Description * <span
+                        class="text-zinc-400">(Optinal)</span></label>
+                <textarea id="product-description" formControlName="description"
+                    class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500"
+                    rows="4" placeholder="Enter product description"></textarea>
+                <div class="msg text-red-500 text-sm"
+                    *ngIf="(productForm.get('description')!.invalid && productForm.get('description')!.touched)">
+                    <span class="ml-1" *ngIf="productForm.get('description')!.errors?.['maxlength']">*description Must
+                        be One
+                        or More</span>
+                </div>
+            </div>
+
+            <!-- Product Category -->
+            <div>
+                <label for="product-category" class="block text-sm font-medium text-gray-700">Category *</label>
+                <select id="product-category" formControlName="category"
+                    class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500">
+                    <option value="" disabled selected>Select a category</option>
+                    <option *ngFor="let category of categories" [value]="category.value">{{category.name}}</option>
+                </select>
+            </div>
+
+            <!-- Save Button -->
+            <div class="flex justify-end">
+                <button type="submit"
+                    class="cursor-pointer px-6 py-2 bg-green-500 text-white font-bold rounded-full hover:bg-green-600 focus:outline-none transition">
+                    Create New Product
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

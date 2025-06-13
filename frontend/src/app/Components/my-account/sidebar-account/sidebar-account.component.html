@@ -1,0 +1,30 @@
+<!-- Sidebar -->
+<div class="p-6 bg-white xl:border rounded-md  w-[20rem] mb-6 lg:mb-0">
+        <!-- Title -->
+        <h2 class="text-2xl font-bold text-zinc-900 mb-4 lg:mb-0 mt-4">Account Details</h2>
+        <hr class="my-6 lg:my-10">
+
+        <!-- Menu Items -->
+        <ul class="space-y-4 flex flex-col gap-4">
+                <!-- Active Item -->
+                <li><a routerLink="account-details" routerLinkActive="active"
+                                class="text-zinc-800 hover:text-green-500 transition duration-300 cursor-pointer">Account
+                                Details</a>
+                </li>
+                <li><a routerLink="orders" routerLinkActive="active"
+                                class="text-zinc-800 hover:text-green-500 transition duration-300 cursor-pointer">Orders</a>
+                </li>
+                <li><a routerLink="addresses" routerLinkActive="active"
+                                class="text-zinc-800 hover:text-green-500 transition duration-300 cursor-pointer">Addresses</a>
+                </li>
+                <li><a routerLink="../cart"
+                                class="text-zinc-800 hover:text-green-500 transition duration-300 cursor-pointer">Cart</a>
+                </li>
+                <li><a routerLink="../cart"
+                                class="text-zinc-800 hover:text-green-500 transition duration-300 cursor-pointer">Wishlist</a>
+                </li>
+                <li><button (click)="logout()" class="text-zinc-800 hover:text-green-500 transition duration-300 ">Log
+                                Out</button>
+                </li>
+        </ul>
+</div>

@@ -1,0 +1,61 @@
+<div class="flex">
+    <!-- Sidebar Container -->
+    <div class="bg-white w-[300px] md:w-[400px] h-lvh  fixed z-50 top-0 right-0 transition duration-300 translate-x-0 dela"
+        [ngClass]="{ 'translate-x-[300px] md:translate-x-[400px] ': isBarHidden }">
+
+        <!-- Header Section -->
+        <div class="w-full h-10 bg-green-600 flex items-center justify-start px-4">
+            <button (click)="toggleBar()">
+                <svg width="18px" height="18px" viewBox="-0.5 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 21.32L21 3.32001M3 3.32001L21 21.32" stroke="#fff" stroke-width="2.025"
+                        stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+            </button>
+            <p class="font-bold text-white uppercase flex justify-center w-full items-center">Your Cart</p>
+        </div>
+
+        <!-- Cart Empty State -->
+        <div *ngIf="total === 0" class="py-8 px-5">
+            <p class="font-mono mb-8 [word-spacing:-5px] font-semibold text-lg uppercase text-right text-zinc-800">
+                Currently Empty:
+                <span class="text-green-500 text-xl font-bold">0.00EGP</span>
+            </p>
+            <a routerLink="shop">
+                <button type="button" (click)="toggleBar()"
+                    class="text-sm w-full h-11 font-bold rounded-full bg-zinc-900 px-6 pb-2 pt-2.5 leading-normal text-neutral-50 shadow-dark-3 transition duration-200 ease-in-out hover:bg-green-600 hover:shadow-dark-2 active:shadow-dark-2 motion-reduce:transition-none">
+                    Continue Shopping
+                </button>
+            </a>
+
+        </div>
+
+        <!-- Cart with Items -->
+        <div *ngIf="total !== 0" class="py-8 pl-5 flex flex-col justify-center items-end">
+            <div class="products w-full h-[70vh] max-sm:h-[62vh] overflow-y-auto pr-5">
+                <app-product-cart-bar *ngFor="let product of products" [product]="product"></app-product-cart-bar>
+            </div>
+
+            <div class=" mr-5 w-full pl-5">
+                <hr>
+                <p class="uppercase font-semibold text-zinc-800 my-6 text-right">
+                    Total: <span class="text-green-500 text-xl font-bold ">{{total | number:'1.2-4'}} EGP</span>
+                </p>
+
+                <!-- Action Buttons -->
+                <button type="button"
+                    class="mb-3 text-sm w-full h-11 font-bold rounded-full bg-green-600 px-6 pb-2 pt-2.5 leading-normal text-neutral-50 shadow-dark-3 transition duration-200 ease-in-out hover:bg-zinc-800 hover:shadow-dark-2 active:shadow-dark-2 motion-reduce:transition-none"
+                    (click)="goToCart()">
+                    View Cart
+                </button>
+                <button type="button"
+                    class="mb-3 text-sm w-full h-11 font-bold rounded-full bg-zinc-900 px-6 pb-2 pt-2.5 leading-normal text-neutral-50 shadow-dark-3 transition duration-200 ease-in-out hover:bg-green-600 hover:shadow-dark-2 active:shadow-dark-2 motion-reduce:transition-none"
+                    (click)="goToCart()">
+                    Checkout
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlay for Cart Sidebar -->
+    <span [ngClass]="{'hidden': isBarHidden}" class="bg-black opacity-50 h-lvh w-full fixed top-0 z-40 hidden "></span>
+</div>

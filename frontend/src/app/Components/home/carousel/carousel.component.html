@@ -1,0 +1,84 @@
+<div
+    class="carousel-container"
+    (mouseenter)="onMouseEnter()"
+    (mouseleave)="onMouseLeave()"
+>
+    <!-- Background Images with Animation -->
+    <div class="slides-wrapper bg-gray-200">
+        <div
+            *ngFor="let slide of slides; let i = index"
+            class="slide"
+            [class.active]="i === currentIndex"
+            [class.prev]="i < currentIndex"
+            [class.next]="i > currentIndex"
+            [class.slide-out-left]="
+                isTransitioning &&
+                slideDirection === 'next' &&
+                i === currentIndex
+            "
+            [class.slide-out-right]="
+                isTransitioning &&
+                slideDirection === 'prev' &&
+                i === currentIndex
+            "
+            [style.background-image]="'url(' + slide.image + ')'"
+        >
+            <!-- Dark Overlay -->
+            <div class="overlay"></div>
+        </div>
+    </div>
+
+    <!-- Content -->
+    <div class="content-wrapper">
+        <div
+            class="content"
+            [class.fade-in]="!isTransitioning"
+            [class.fade-out]="isTransitioning"
+        >
+            <p class="category">{{ getCurrentSlide().category }}</p>
+
+            <h1 class="heading">{{ getCurrentSlide().heading }}</h1>
+
+            <p class="description">{{ getCurrentSlide().description }}</p>
+
+            <div class="buttons">
+                <button class="btn-primary">
+                    {{ getCurrentSlide().primaryBtn }}
+                </button>
+                <button class="btn-secondary">
+                    {{ getCurrentSlide().secondaryBtn }}
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Arrows -->
+    <button class="nav-btn nav-btn-left" (click)="prev()">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25">
+            <path
+                fill="#fff"
+                d="m17.5 5.999-.707.707 5.293 5.293H1v1h21.086l-5.294 5.295.707.707L24 12.499l-6.5-6.5z"
+            />
+        </svg>
+    </button>
+
+    <button class="nav-btn nav-btn-right" (click)="next()">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25">
+            <path
+                fill="#fff"
+                d="m17.5 5.999-.707.707 5.293 5.293H1v1h21.086l-5.294 5.295.707.707L24 12.499l-6.5-6.5z"
+            />
+        </svg>
+    </button>
+
+    <!-- Dots Indicator -->
+    <div class="dots-indicator">
+        <span
+            *ngFor="let slide of slides; let i = index"
+            class="dot"
+            [class.active]="i === currentIndex"
+            (click)="goToSlide(i)"
+        >
+        </span>
+    </div>
+</div>

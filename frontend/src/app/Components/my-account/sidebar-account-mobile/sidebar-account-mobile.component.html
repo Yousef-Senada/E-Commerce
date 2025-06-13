@@ -1,0 +1,13 @@
+<div [ngClass]=" {'-translate-x-80' : !isSortBarHidden}"
+    class=" fixed bg-white h-full w-80 top-0 left-0 z-50 transition-all duration-300">
+    <div class="h-10 px-5 flex items-center justify-center">
+        <button (click)="toggleSortBar()"
+            class="text-zinc-800 text-base flex items-center justify-center gap-1 hover:text-red-600 transition-all duration-200">
+            <i class="ri-close-large-line"></i>Close</button>
+    </div>
+    <hr class="mb-5">
+
+    <app-sidebar-account></app-sidebar-account>
+
+</div>
+<span *ngIf="isSortBarHidden" class="bg-black opacity-50 h-lvh w-full fixed top-0 z-40"></span>

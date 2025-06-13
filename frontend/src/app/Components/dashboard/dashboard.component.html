@@ -1,0 +1,47 @@
+<app-path-define [title]="title"></app-path-define>
+<div class="flex flex-col lg:flex-row justify-evenly items-start py-10">
+    <!-- Sidebar -->
+    <div
+        class="p-6 bg-white border rounded-md h-auto w-full lg:w-[20rem] mb-6 lg:mb-0"
+    >
+        <!-- Title -->
+        <h2 class="text-2xl font-bold text-zinc-900 mb-4 lg:mb-0 mt-4">
+            Account Details
+        </h2>
+        <hr class="my-6 lg:my-10" />
+
+        <!-- Menu Items -->
+        <ul class="space-y-4 flex flex-col gap-4">
+            <!-- Active Item -->
+            <li>
+                <a
+                    routerLink="add-product"
+                    routerLinkActive="active"
+                    class="text-zinc-800 hover:text-green-500 transition duration-300 cursor-pointer"
+                    >Add Product</a
+                >
+            </li>
+            <li>
+                <a
+                    routerLink="add-category"
+                    routerLinkActive="active"
+                    class="text-zinc-800 hover:text-green-500 transition duration-300 cursor-pointer"
+                    >Add Category</a
+                >
+            </li>
+            <li>
+                <a
+                    routerLink="add-image-to-carousel"
+                    routerLinkActive="active"
+                    class="text-zinc-800 hover:text-green-500 transition duration-300 cursor-pointer"
+                    >Add Image To Carousel</a
+                >
+            </li>
+        </ul>
+    </div>
+
+    <!-- Content Area -->
+    <div class="w-full lg:w-[80rem] flex items-start justify-center">
+        <router-outlet></router-outlet>
+    </div>
+</div>
