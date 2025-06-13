@@ -1,10 +1,10 @@
 export const environment = {
-    dev: true,
-    apiUrl: '',
+    dev: false,
+    apiUrl: 'https://purefit-backend.vercel.app/',
 };
 
 if (environment.dev) {
     environment.apiUrl = 'http://localhost:3000/';
 } else {
-    environment.apiUrl = 'https://e-commerce-purfit-backend.vercel.app/';
+    environment.apiUrl = 'https://purefit-backend.vercel.app/';
 }
