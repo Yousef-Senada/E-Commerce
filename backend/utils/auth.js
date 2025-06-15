@@ -1,7 +1,7 @@
 require('dotenv').config()
 const jwt = require('jsonwebtoken')
 const userModel = require('../Models/user.model')
-const Secret_Key = process.env.Secret_Key
+const Secret_Key = process.env.SECRET_KEY
 
 exports.createToken = (data) => {
     return jwt.sign(data, Secret_Key, {
